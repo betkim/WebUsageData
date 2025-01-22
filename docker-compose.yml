@@ -1,0 +1,25 @@
+# docker-compose.yml
+services:
+  postgres:
+    image: postgres
+    container_name: ecommerce_postgres
+    environment:
+      - POSTGRES_DB=ecommerce
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:4.4.18 # latest는 컴퓨터 사양이 높아야 함
+    container_name: ecommerce_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  postgres_data:
+  mongodb_data:
